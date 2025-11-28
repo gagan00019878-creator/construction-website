@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact - SKS Enterprises</title>
+<link rel="stylesheet" href="assets/css/style.css">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet"/>
+</head>
+<body>
+
+<header>
+    <div class="logo">SKS Enterprises</div>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="projects.html">Projects</a>
+        <a href="contact.html" class="active">Contact</a>
+    </nav>
+</header>
+
+<section id="contact" class="contact" data-aos="fade-up">
+  <div class="container">
+    <h2 class="section-title">Contact Us</h2>
+    <div class="contact-grid" style="max-width:800px;margin:0 auto;">
+
+       <!-- ✅ Single working form -->
+     
+       <form id="contactForm" class="contact-form" novalidate>
+       
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <input type="text" name="phone" placeholder="Phone (optional)">
+            <textarea name="message" rows="6" placeholder="Your Message" required></textarea>
+            <button type="submit">Send Message</button>
+            <div id="formFeedback" style="margin-top:12px; display:none; padding:10px; border-radius:6px;"></div>
+          
+        
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+    <div class="container footer-container">
+        <div class="footer-about">
+            <h3>SKS Enterprises</h3>
+            <p>Premium construction & interior solutions across India.</p>
+        </div>
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="projects.html">Projects</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <div class="footer-contact">
+            <p>Email: info@sksenterprises.com</p>
+            <p>Phone: +91 9876543210</p>
+            <p>Address: 123 Main Street, Mumbai, India</p>
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script>
+AOS.init({duration:1200,once:true});
+</script>
+
+<!-- ✅ Contact Form Script -->
+<script>
+document.getElementById('contactForm').addEventListener('submit', async function(e){
+    e.preventDefault();
+
+    const feedbackDiv = document.getElementById('formFeedback');
+    feedbackDiv.style.display = 'none';
+
+    const formData = {
+        name: this.name.value,
+        email: this.email.value,
+        phone: this.phone.value,
+        message: this.message.value
+    };
+
+    try {
+        const res = await fetch('http://127.0.0.1:5000/send', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(formData)
+        });
+
+        const data = await res.json();
+
+        feedbackDiv.innerText = data.message;
+        feedbackDiv.style.display = 'block';
+        feedbackDiv.style.background = data.success ? '#d4edda' : '#f8d7da';
+        feedbackDiv.style.color = data.success ? '#155724' : '#721c24';
+
+        if(data.success) this.reset();
+
+    } catch(err) {
+        feedbackDiv.innerText = "Oops! Something went wrong.";
+        feedbackDiv.style.display = 'block';
+        feedbackDiv.style.background = '#f8d7da';
+        feedbackDiv.style.color = '#721c24';
+        console.error(err);
+    }
+});
+</script>
+
+</body>
+</html>
