@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact - SKS Enterprises</title>
+<link rel="stylesheet" href="assets/css/style.css">
+
+<style>
+/* Popup Styling */
+.alert {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 18px 25px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 500;
+    z-index: 9999;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    opacity: 1;
+    transition: opacity 0.5s ease;
+}
+
+/* Success */
+.alert.success {
+    background: #f3dec4;
+    color: #ff8c00;
+    border-left: 6px solid #ff8c00;
+}
+
+/* Error */
+.alert.error {
+    background: #fce8e6;
+    color: #a71d2a;
+    border-left: 6px solid #dc3545;
+}
+
+/* Form input styling */
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 15px;
+}
+
+.contact-form button {
+    padding: 12px 25px;
+    background: #ff8c00;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.contact-form button:hover {
+    background: #e57800;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">SKS Enterprises</div>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="projects.html">Projects</a>
+        <a href="contact.html" class="active">Contact</a>
+    </nav>
+</header>
+
+<section id="contact" class="contact">
+  <div class="container">
+    <h2 class="section-title">Contact Us</h2>
+
+    <!-- SUCCESS / ERROR POPUP -->
+    <div id="success-message" class="alert success" style="display:none;">✅ Your message has been sent successfully!</div>
+    <div id="error-message" class="alert error" style="display:none;">❌ Something went wrong. Please try again.</div>
+
+    <!-- EMAILJS FORM -->
+    <form class="contact-form" id="contact-form">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <input type="text" name="phone" placeholder="Phone (optional)">
+        <textarea name="message" rows="6" placeholder="Your Message" required></textarea>
+        <button type="submit">Send Message</button>
+    </form>
+  </div>
+</section>
+
+<!-- EMAILJS SCRIPT -->
+<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+<script>
+emailjs.init("m5arZViEKMGwMIP0a");
+document.getElementById('contact-form').addEventListener('submit', function(event){
+  event.preventDefault();
+  const form = this;
+
+  emailjs.sendForm('service_dp5txmr', 'template_emc0j0i', form)
+    .then(function(){
+      form.reset();
+      const successMsg = document.getElementById("success-message");
+      successMsg.style.display = 'block';
+      setTimeout(()=>{ successMsg.style.opacity = 0; }, 3000);
+      setTimeout(()=>{ successMsg.style.display = 'none'; successMsg.style.opacity = 1; }, 3500);
+    }, function(error){
+      const errorMsg = document.getElementById("error-message");
+      errorMsg.style.display = 'block';
+      setTimeout(()=>{ errorMsg.style.opacity = 0; }, 3000);
+      setTimeout(()=>{ errorMsg.style.display = 'none'; errorMsg.style.opacity = 1; }, 3500);
+    });
+});
+</script>
+
+</body>
+</html>
