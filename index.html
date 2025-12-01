@@ -29,7 +29,10 @@
 
 <!-- HEADER -->
 <header>
-    <div class="logo">SKS Enterprises</div>
+    <div class="logo">
+        <img src="assets/images/Group 13 (5).png" alt="SKS Enterprises Logo">
+    </div>
+
     <nav>
         <a href="index.html" class="active">Home</a>
         <a href="about.html">About</a>
@@ -37,6 +40,7 @@
         <a href="contact.html">Contact</a>
     </nav>
 </header>
+
 <section class="hero" style="background-image: url(assets/images/hero.jpg);">
     <div class="overlay"></div>
     <div class="hero-content">
@@ -439,26 +443,46 @@ filterButtons.forEach(button => {
     </div>
 </section>
 
-<!-- FOOTER -->
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 <footer class="footer">
     <div class="container footer-container">
-        <div class="footer-about">
+
+        <!-- ABOUT -->
+        <div class="footer-box">
             <h3>SKS Enterprises</h3>
             <p>Premium construction & interior solutions across India.</p>
         </div>
-        <div class="footer-links">
-            <a href="index.html">Home</a>
-            <a href="about.html">About</a>
-            <a href="projects.html">Projects</a>
-            <a href="contact.html">Contact</a>
+
+        <!-- QUICK LINKS -->
+        <div class="footer-box">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><i class="fa-solid fa-angle-right"></i> <a href="index.html">Home</a></li>
+                <li><i class="fa-solid fa-angle-right"></i> <a href="about.html">About</a></li>
+                <li><i class="fa-solid fa-angle-right"></i> <a href="projects.html">Projects</a></li>
+                <li><i class="fa-solid fa-angle-right"></i> <a href="contact.html">Contact</a></li>
+            </ul>
         </div>
-        <div class="footer-contact">
-            <p>Email: info@sksenterprises.com</p>
-            <p>Phone: +91 9876543210</p>
-            <p>Address: 123 Main Street, Mumbai, India</p>
+
+        <!-- CONTACT -->
+        <div class="footer-box">
+            <h3>Contact</h3>
+            <p><i class="fa-solid fa-envelope"></i>sksenterprises978@gmail.com</p>
+            <p><i class="fa-solid fa-phone"></i>Phone: +91 8283996992</p>
+            <p><i class="fa-solid fa-location-dot"></i>SCO, 144-145, SECTOR 34-A, NEAR SHAM JEWELLERS, CHANDIGARH </p>
         </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        <p>© 2025 SKS Enterprises — All Rights Reserved</p>
     </div>
 </footer>
+
+
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
